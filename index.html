@@ -3,71 +3,217 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Digital Product Store</title>
+<title>UI Kits for AI Products</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#0a0a0a;--card:#141414;--border:#222;--text:#e8e8e8;--muted:#888;--accent:#6366f1;--accent2:#818cf8}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center}
-.hero{text-align:center;padding:4rem 2rem 2rem;max-width:600px}
-.hero h1{font-size:2.2rem;font-weight:700;letter-spacing:-.03em;margin-bottom:.5rem}
-.hero p{color:var(--muted);font-size:1.05rem;line-height:1.6}
-.badge{display:inline-block;background:var(--accent);color:#fff;font-size:.7rem;font-weight:600;padding:.25rem .6rem;border-radius:99px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:1rem}
-.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;padding:1rem 2rem 4rem;max-width:720px;width:100%}
-.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:2rem;display:flex;flex-direction:column;gap:1rem;transition:border-color .2s}
-.card:hover{border-color:var(--accent)}
-.card h2{font-size:1.25rem;font-weight:600}
-.card .desc{color:var(--muted);font-size:.9rem;line-height:1.5;flex:1}
-.card .meta{display:flex;align-items:center;justify-content:space-between}
-.price{font-size:1.5rem;font-weight:700;color:var(--accent2)}
-.btn{background:var(--accent);color:#fff;border:none;padding:.75rem 1.5rem;border-radius:10px;font-size:.95rem;font-weight:600;cursor:pointer;text-decoration:none;text-align:center;transition:opacity .2s}
-.btn:hover{opacity:.85}
-.footer{padding:2rem;color:var(--muted);font-size:.8rem;text-align:center}
-.features{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.25rem}
-.feat{background:#1a1a2e;color:var(--accent2);font-size:.7rem;padding:.2rem .5rem;border-radius:6px}
+:root{--bg:#09090b;--card:#18181b;--border:#27272a;--text:#fafafa;--muted:#a1a1aa;--accent:#8b5cf6;--accent2:#a78bfa;--glow:rgba(139,92,246,.15)}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+a{color:var(--accent2);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* Gradient bg */
+.bg-glow{position:fixed;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:600px;background:radial-gradient(ellipse,var(--glow),transparent 70%);pointer-events:none;z-index:0}
+
+.container{max-width:800px;margin:0 auto;padding:2rem 1.5rem;position:relative;z-index:1}
+
+/* Header */
+.header{text-align:center;padding:3rem 0 2.5rem}
+.logo{font-size:.85rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent2);margin-bottom:1.25rem}
+.header h1{font-size:2.5rem;font-weight:700;letter-spacing:-.035em;line-height:1.15;margin-bottom:.75rem}
+.header h1 span{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.header p{color:var(--muted);font-size:1.05rem;line-height:1.6;max-width:520px;margin:0 auto}
+
+/* Products */
+.products{display:flex;flex-direction:column;gap:1.5rem;margin:2rem 0 3rem}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:2rem;transition:border-color .25s,box-shadow .25s}
+.card:hover{border-color:var(--accent);box-shadow:0 0 30px var(--glow)}
+.card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.75rem;gap:1rem}
+.card h2{font-size:1.3rem;font-weight:600;letter-spacing:-.02em}
+.price-tag{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-size:1.1rem;font-weight:700;padding:.35rem .9rem;border-radius:99px;white-space:nowrap}
+.card .desc{color:var(--muted);font-size:.9rem;line-height:1.65;margin-bottom:1rem}
+.tags{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1.25rem}
+.tag{background:rgba(139,92,246,.1);color:var(--accent2);font-size:.72rem;font-weight:500;padding:.25rem .6rem;border-radius:6px;border:1px solid rgba(139,92,246,.2)}
+.includes{color:var(--muted);font-size:.82rem;margin-bottom:1.25rem;line-height:1.5}
+.includes strong{color:var(--text)}
+.btn-row{display:flex;gap:.75rem;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:.4rem;padding:.7rem 1.4rem;border-radius:10px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .2s}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent2);text-decoration:none}
+.btn-secondary{background:transparent;color:var(--accent2);border:1px solid var(--border)}
+.btn-secondary:hover{border-color:var(--accent);text-decoration:none}
+
+/* How it works */
+.how{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:2rem;margin-bottom:2rem}
+.how h3{font-size:1.1rem;font-weight:600;margin-bottom:1rem}
+.steps{display:flex;flex-direction:column;gap:.75rem}
+.step{display:flex;gap:.75rem;align-items:flex-start}
+.step-num{background:var(--accent);color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0;margin-top:.1rem}
+.step p{color:var(--muted);font-size:.88rem;line-height:1.5}
+.step p strong{color:var(--text)}
+
+/* Footer */
+.footer{text-align:center;padding:2rem 0;color:var(--muted);font-size:.8rem;border-top:1px solid var(--border)}
+.footer a{color:var(--accent2)}
+
+/* Modal */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;align-items:center;justify-content:center;padding:1rem}
+.modal-overlay.active{display:flex}
+.modal{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:2rem;max-width:480px;width:100%;position:relative}
+.modal h3{font-size:1.2rem;font-weight:600;margin-bottom:.5rem}
+.modal p{color:var(--muted);font-size:.88rem;line-height:1.5;margin-bottom:1rem}
+.modal .close{position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--muted);font-size:1.2rem;cursor:pointer}
+.modal .close:hover{color:var(--text)}
+.copy-box{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:.75rem;font-family:monospace;font-size:.82rem;color:var(--accent2);word-break:break-all;margin-bottom:1rem;cursor:pointer;position:relative}
+.copy-box:hover{border-color:var(--accent)}
+.copy-box::after{content:'Click to copy';position:absolute;right:.5rem;top:.5rem;font-size:.65rem;color:var(--muted);font-family:'Inter',sans-serif}
+.copied .copy-box::after{content:'Copied ✓';color:var(--accent)}
+.modal .email-link{display:inline-flex;align-items:center;gap:.4rem}
+
+@media(max-width:600px){
+  .header h1{font-size:1.8rem}
+  .card-header{flex-direction:column}
+  .btn-row{flex-direction:column}
+  .btn{justify-content:center}
+}
 </style>
 </head>
 <body>
-<div class="hero">
-<div class="badge">Digital Products</div>
-<h1>Premium UI Kits for AI&nbsp;Products</h1>
-<p>Production-ready code kits for dashboards, data visualization, and AI interfaces. Built with modern web standards. Download instantly.</p>
+<div class="bg-glow"></div>
+<div class="container">
+  <header class="header">
+    <div class="logo">✦ Digital Products</div>
+    <h1>Premium UI Kits for<br><span>AI Products</span></h1>
+    <p>Production-ready code for dashboards, data visualization, and AI interfaces. Built with modern web standards. Instant delivery.</p>
+  </header>
+
+  <div class="products">
+    <!-- Product 1 -->
+    <div class="card">
+      <div class="card-header">
+        <h2>AI Dashboard Starter Kit</h2>
+        <div class="price-tag">$12</div>
+      </div>
+      <p class="desc">A complete dashboard foundation for AI-powered products. Responsive layouts, dark/light themes, chart components, data tables, and a polished design system ready to customize.</p>
+      <div class="tags">
+        <span class="tag">HTML / CSS / JS</span>
+        <span class="tag">Responsive</span>
+        <span class="tag">Dark + Light Mode</span>
+        <span class="tag">Chart Components</span>
+        <span class="tag">Data Tables</span>
+      </div>
+      <div class="includes"><strong>Includes:</strong> Source code, component library, design tokens, documentation. ZIP download (~2MB).</div>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="#" onclick="openModal('dashboard')">Buy Now — $12 →</a>
+      </div>
+    </div>
+
+    <!-- Product 2 -->
+    <div class="card">
+      <div class="card-header">
+        <h2>Causal Graph UI Kit</h2>
+        <div class="price-tag">$15</div>
+      </div>
+      <p class="desc">Interactive causal graph visualization components. Drag-and-drop nodes, animated edges, zoom/pan controls, and export functionality. Built for ML explainability and data science tools.</p>
+      <div class="tags">
+        <span class="tag">HTML / CSS / JS</span>
+        <span class="tag">Interactive SVG</span>
+        <span class="tag">Drag & Drop</span>
+        <span class="tag">Zoom / Pan</span>
+        <span class="tag">Export</span>
+      </div>
+      <div class="includes"><strong>Includes:</strong> Source code, graph engine, layout algorithms, example datasets, docs. ZIP download (~3MB).</div>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="#" onclick="openModal('graph')">Buy Now — $15 →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- How it works -->
+  <div class="how">
+    <h3>How It Works</h3>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <p><strong>Send payment</strong> via PayPal, Venmo, or USDC to the address shown after clicking Buy.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <p><strong>Email your receipt</strong> (or transaction ID) to <a href="mailto:heyitskim@agentmail.to">heyitskim@agentmail.to</a> with the product name.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <p><strong>Get your download</strong> — we'll send the ZIP file to your email within minutes (usually instant, AI-powered fulfillment).</p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    Questions? <a href="mailto:heyitskim@agentmail.to">heyitskim@agentmail.to</a><br>
+    <span style="margin-top:.5rem;display:inline-block">Built with care. Instant AI-powered delivery.</span>
+  </footer>
 </div>
 
-<div class="products">
-<div class="card">
-<h2>AI Dashboard Starter Kit</h2>
-<p class="desc">A complete dashboard foundation for AI-powered products. Includes responsive layouts, dark/light themes, chart components, data tables, and a polished design system. Ready to customize.</p>
-<div class="features">
-<span class="feat">HTML/CSS/JS</span>
-<span class="feat">Responsive</span>
-<span class="feat">Dark Mode</span>
-<span class="feat">Charts</span>
-</div>
-<div class="meta">
-<span class="price">$12</span>
-<a class="btn" href="https://buy.stripe.com/test_placeholder_dashboard" id="buy-dashboard">Buy Now →</a>
-</div>
+<!-- Payment Modal -->
+<div class="modal-overlay" id="modal">
+  <div class="modal" id="modal-content">
+    <button class="close" onclick="closeModal()">✕</button>
+    <h3 id="modal-title"></h3>
+    <p id="modal-desc"></p>
+    
+    <div style="margin-bottom:1.25rem">
+      <div style="font-size:.8rem;font-weight:600;margin-bottom:.5rem;color:var(--text)">💳 PayPal / Venmo</div>
+      <div class="copy-box" onclick="copyText(this)" id="paypal-box">Send to: heyitskim.ai@gmail.com</div>
+    </div>
+
+    <div style="margin-bottom:1.25rem">
+      <div style="font-size:.8rem;font-weight:600;margin-bottom:.5rem;color:var(--text)">💰 USDC (Ethereum / Base / Polygon)</div>
+      <div class="copy-box" onclick="copyText(this)" id="crypto-box" style="font-size:.72rem">0x0000000000000000000000000000000000000000</div>
+      <div style="font-size:.7rem;color:var(--muted);margin-top:.25rem">Any EVM chain accepted (ETH, Base, Polygon, Arbitrum)</div>
+    </div>
+
+    <div style="border-top:1px solid var(--border);padding-top:1rem;margin-top:.5rem">
+      <p style="font-size:.82rem">After payment, email <a href="mailto:heyitskim@agentmail.to" class="email-link">heyitskim@agentmail.to</a> with:</p>
+      <ul style="color:var(--muted);font-size:.82rem;padding-left:1.2rem;margin-top:.35rem;line-height:1.6">
+        <li>Product name</li>
+        <li>Payment method + transaction ID</li>
+        <li>Your email for delivery</li>
+      </ul>
+    </div>
+  </div>
 </div>
 
-<div class="card">
-<h2>Causal Graph UI Kit</h2>
-<p class="desc">Interactive causal graph visualization components. Drag-and-drop nodes, animated edges, zoom/pan controls, and export functionality. Perfect for ML explainability and data science tools.</p>
-<div class="features">
-<span class="feat">HTML/CSS/JS</span>
-<span class="feat">Interactive</span>
-<span class="feat">SVG Graphs</span>
-<span class="feat">Export</span>
-</div>
-<div class="meta">
-<span class="price">$15</span>
-<a class="btn" href="https://buy.stripe.com/test_placeholder_graph" id="buy-graph">Buy Now →</a>
-</div>
-</div>
-</div>
+<script>
+const products = {
+  dashboard: { title: 'AI Dashboard Starter Kit — $12', desc: 'Send $12 using any method below, then email your receipt for instant delivery.' },
+  graph: { title: 'Causal Graph UI Kit — $15', desc: 'Send $15 using any method below, then email your receipt for instant delivery.' }
+};
 
-<div class="footer">
-Questions? Email <a href="mailto:heyitskim@agentmail.to" style="color:var(--accent2)">heyitskim@agentmail.to</a><br>
-Instant delivery after payment confirmation.
-</div>
+function openModal(id) {
+  const p = products[id];
+  document.getElementById('modal-title').textContent = p.title;
+  document.getElementById('modal-desc').textContent = p.desc;
+  document.getElementById('modal').classList.add('active');
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('active');
+}
+
+document.getElementById('modal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+function copyText(el) {
+  const text = el.textContent.replace('Click to copy','').replace('Copied ✓','').trim();
+  navigator.clipboard.writeText(text).then(() => {
+    el.parentElement.classList.add('copied');
+    setTimeout(() => el.parentElement.classList.remove('copied'), 2000);
+  });
+}
+
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
+</script>
 </body>
 </html>
